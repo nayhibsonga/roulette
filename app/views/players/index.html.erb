@@ -1,0 +1,49 @@
+<h1>Listing players</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Last name</th>
+      <th>Age</th>
+      <th>Money</th>
+      <th>Color: <%= @rand_pr %></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= player.last_name %></td>
+        <td><%= player.age %></td>
+        <td><%= player.money %></td>
+        <td><%= link_to 'Show', player %></td>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <% if @winners.count > 0 %>
+      <tr><td><h3>Ganadores:</h3></td></tr>
+      <% @winners.each do |player| %>
+        <tr>
+          <td><%= player.name %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    <% if @losers.count > 0 %>
+      <tr><td><h3>Perdedores:</h3></td></tr>
+      <% @losers.each do |player| %>
+        <tr>
+          <td><%= player.name %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player', new_player_path %>
